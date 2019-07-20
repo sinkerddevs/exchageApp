@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "464253221080",
+    "firebase_url": "https://exchange-330dd.firebaseio.com",
+    "project_id": "exchange-330dd",
+    "storage_bucket": "exchange-330dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464253221080:android:e89db26062600c16",
+        "android_client_info": {
+          "package_name": "com.example.exchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464253221080-1os9dtlf8ce4iv3hfopubpcjh0eog7ti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9LMVRHXexe7L7sF6E9p-sAHaikgL_eaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464253221080-1os9dtlf8ce4iv3hfopubpcjh0eog7ti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
