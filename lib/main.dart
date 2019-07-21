@@ -1,6 +1,7 @@
 import 'package:exchange/home.dart';
 import 'package:exchange/login.dart';
 import 'package:exchange/pages/user.dart';
+import 'package:exchange/services/showexchange.dart';
 import 'package:exchange/setup/createNewUser.dart';
 import 'package:exchange/setup/loginGoogle.dart';
 import 'package:exchange/setup/resetPassword.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/loginGoogle': (BuildContext context) => new MyLoginPage(),
         '/createUser': (BuildContext context) => new CreateNewUser(),
         '/showUser': (BuildContext context) => new ShowUser(),
-        '/resetpassword': (BuildContext context) => new ResetPassword()
+        '/resetpassword': (BuildContext context) => new ResetPassword(),
       },
     );
   }

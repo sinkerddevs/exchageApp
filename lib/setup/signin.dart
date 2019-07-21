@@ -118,7 +118,7 @@ class _SigninState extends State<Signin> {
                             style: TextStyle(fontSize: 16.0),
                           ),
                           colorBrightness: Brightness.dark,
-                          color: Colors.deepOrange,
+                          color: Colors.red,
                           icon: Icon(Icons.border_color),
                           onPressed: () => signUp_firebase(),
                         )

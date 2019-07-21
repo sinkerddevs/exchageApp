@@ -154,11 +154,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                             buildButtonLoginIn(context),
                             buildForgetPassword(),
                             or(),
-                            buildButtonGoogle(context),
-                            buildButtonFacebook(context),
-                            SizedBox(
-                              height: 10.0,
-                            ),
+                            // buildButtonGoogle(context),
+                            // buildButtonFacebook(context),
+                            
                             resetPassword(context),
                           ],
                         ),
@@ -273,7 +271,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             style: TextStyle(fontSize: 14, color: Colors.white)),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.deepOrangeAccent[700]),
+            color: Colors.red),
         margin: EdgeInsets.only(top: 1),
         padding: EdgeInsets.all(12),
       ),

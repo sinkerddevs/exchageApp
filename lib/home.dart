@@ -1,3 +1,4 @@
+import 'package:exchange/services/showexchange.dart';
 import 'package:exchange/setup/createNewUser.dart';
 import 'package:exchange/setup/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String email2 = "mirinda.dev@gmail.com";
   String backupname;
   String backupemail;
-
+  
   void newPerSon() {
     this.setState(() {
       backup = user1;
@@ -179,7 +180,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(new MaterialPageRoute(
                         builder: (BuildContext centext) =>
-                            new Exchange("ອັດຕາການແລກປ່ຽນ")));
+                            new ShowExchage()));
                   }),
               new ListTile(
                   title: new Text("ລົງທະບຽນ"),
