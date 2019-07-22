@@ -52,6 +52,7 @@ class _TodayExchangeState extends State<TodayExchange> {
                   return Container(
                     child: Column(
                       children: <Widget>[
+                        SizedBox(height: 5.0,),
                         Text("ອັດຕາການແລກປ່ຽນປະຈຳວັນ",style: TextStyle(color: Colors.blue,fontSize: 20.0),),
                         SizedBox(height: 5.0,),
                          Text("ວັນທີ "+ srd.date,style: TextStyle(color: Colors.blue,fontSize: 16.0),),
