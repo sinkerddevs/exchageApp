@@ -1,5 +1,6 @@
 import 'package:exchange/home.dart';
 import 'package:exchange/login.dart';
+import 'package:exchange/pages/mapshop.dart';
 import 'package:exchange/pages/user.dart';
 import 'package:exchange/services/showexchange.dart';
 import 'package:exchange/setup/createNewUser.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/createUser': (BuildContext context) => new CreateNewUser(),
         '/showUser': (BuildContext context) => new ShowUser(),
         '/resetpassword': (BuildContext context) => new ResetPassword(),
+        '/map': (BuildContext context) => new ShopMap()
       },
     );
   }

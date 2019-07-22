@@ -1,3 +1,4 @@
+import 'package:exchange/pages/mapshop.dart';
 import 'package:exchange/services/showexchange.dart';
 import 'package:exchange/setup/createNewUser.dart';
 import 'package:exchange/setup/signin.dart';
@@ -182,6 +183,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         builder: (BuildContext centext) =>
                             new ShowExchage()));
                   }),
+                  new ListTile(
+                  title: new Text("ແຜນທີ່"),
+                  trailing: new Icon(Icons.map),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext centext) =>
+                            new ShopMap()));
+                  }),
               new ListTile(
                   title: new Text("ລົງທະບຽນ"),
                   trailing: new Icon(Icons.offline_pin),
@@ -205,7 +215,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed('/showUser');
-                    ;
+                    
                   }),
               new Divider(),
               new ListTile(
