@@ -10,32 +10,40 @@ class ShopMap extends StatefulWidget {
 }
 
 class _ShopMapState extends State<ShopMap> {
+  CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
-  static const LatLng _center = const LatLng(17.9640988, 102.6133707);
-  final Set<Marker> _marker = {};
-  LatLng _lastMapPosition = _center;
-  MapType _currentMaptype = MapType.normal;
+
+
+void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+}
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
         title: Text("ແຜນທີ່"),
       ),
-      body: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child:   GoogleMap(
-            // onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(17.974855, 102.630867),
-              zoom: 11.0
-              ),
-              ),
-        
-        ),
-        
-      ),
+      // body: Center(
+      //   child: Container(
+      //     height: MediaQuery.of(context).size.height,
+      //     width: MediaQuery.of(context).size.width,
+      //     child:   GoogleMap(
+      //       mapType: MapType.none,
+      //       initialCameraPosition: CameraPosition( 
+      //         target: LatLng(17.974855, 102.630867),
+      //         zoom: 11.0
+      //         ),
+      //       ),
+      //   ),
+      // ),
+      body: Stack(
+          children: <Widget>[
+            GoogleMap(    
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: _initialPosition,
+            ),
+          ],
+        )
     );
   }
 }
