@@ -35,6 +35,7 @@ class _TodayExchangeState extends State<TodayExchange> {
                   double cAd = srd.rates.cAD;
                   double jPY = srd.rates.jPY;
                   double cNy = srd.rates.cNY;
+                  double tHB = srd.rates.tHB;
 
                   var idr = iDR.toString();
                   var inr = iNR.toString();
@@ -42,12 +43,14 @@ class _TodayExchangeState extends State<TodayExchange> {
                   var jpy = jPY.toString();
                   var cny = cNy.toString();
                   var usd = usdd.toString();
+                  var thb = tHB.toString();
                   var lists = <ListOnTables>[
                     ListOnTables(name: "CAD", buy: cad, sale: cad),
                     ListOnTables(name: "INR", buy: inr, sale: inr),
                     ListOnTables(name: "IDR", buy: idr, sale: idr),
                     ListOnTables(name: "JPN", buy: jpy, sale: jpy),
                     ListOnTables(name: "CNY", buy: cny, sale: cny),
+                    ListOnTables(name: "THB", buy: thb, sale: thb),
                     ListOnTables(name: "USD", buy: usd, sale: usd),
                   ];
                   return Container(
@@ -127,7 +130,7 @@ class ListOnTables {
 
 class exchangeRate {
   static Future<showRateData> data() async {
-    var url = "https://api.exchangeratesapi.io/latest";
+    var url = "https://api.exchangeratesapi.io/latest?base=USD";
     var response = await http.get(url);
     Map map = jsonDecode(response.body);
     showRateData srd = showRateData.fromJson(map);

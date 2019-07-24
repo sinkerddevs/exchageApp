@@ -10,11 +10,13 @@ class TodayExchange extends StatefulWidget {
 }
 
 class _TodayExchangeState extends State<TodayExchange> {
- @override
+  @override
   void initState() {
+    // TODO: implement initState
     exchangeRate.data();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -24,72 +26,91 @@ class _TodayExchangeState extends State<TodayExchange> {
           children: <Widget>[
             FutureBuilder(
               future: exchangeRate.data(),
-              builder: (context, snapshot){
-                if(snapshot.hasData){
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
                   showRateData srd = snapshot.data;
-                  // double usdd = srd.rates.uSD;
+                  double usdd = srd.rates.uSD;
                   double iDR = srd.rates.iDR;
                   double iNR = srd.rates.iNR;
                   double cAd = srd.rates.cAD;
                   double jPY = srd.rates.jPY;
                   double cNy = srd.rates.cNY;
                   double tHB = srd.rates.tHB;
-                  double lAK = srd.rates.lAK;
-                  double vnd = srd.rates.vND;
-                  var idr = iDR.toString();
-                  var inr = iNR.toString();
-                  var cad = cAd.toString();
-                  var jpy = jPY.toString();
-                  var cny = cNy.toString();
-                  var lak = lAK.toString();
-                  // var usd = usdd.toString();
-                  var thb = tHB.toString();
-                  var vND = vnd.toString();
+                  double rUB = srd.rates.rUB;
+                  
+
+                  var idr = iDR.toStringAsFixed(2);
+                  var rub = rUB.toStringAsFixed(2);
+                  var inr = iNR.toStringAsFixed(2);
+                  var cad = cAd.toStringAsFixed(2);
+                  var jpy = jPY.toStringAsFixed(2);
+                  var cny = cNy.toStringAsFixed(2);
+                  var usd = usdd.toStringAsFixed(2);
+                  var thb = tHB.toStringAsFixed(2);
                   var lists = <ListOnTables>[
-                      ListOnTables(name: "CAD", buy: cad, sale: cad),
-                      ListOnTables(name: "INR", buy: inr, sale: inr),
-                      ListOnTables(name: "IDR", buy: idr, sale: idr),
-                      ListOnTables(name: "JPN", buy: jpy, sale: jpy),
-                      ListOnTables(name: "THB", buy: thb, sale: thb),
-                      ListOnTables(name: "LAK", buy: lak,sale: lak),
-                      ListOnTables(name: "VND", buy: vND,sale: vND),
-                      ListOnTables(name: "CNY", buy: cny, sale: cny),
-                      // ListOnTables(name: "USD", buy: usd, sale: usd),
+                    ListOnTables(name: "CAD", buy: cad, sale: cad),
+                    ListOnTables(name: "CNY", buy: cny, sale: cny),
+                    ListOnTables(name: "INR", buy: inr, sale: inr),
+                    ListOnTables(name: "IDR", buy: idr, sale: idr),
+                    ListOnTables(name: "JPN", buy: jpy, sale: jpy),
+                    ListOnTables(name: "THB", buy: thb, sale: thb),
+                    ListOnTables(name: "RUB", buy: rub,sale: rub),
+                    ListOnTables(name: "USD", buy: usd, sale: usd),
                   ];
                   return Container(
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 10.0,),
-                        Text("ອັດຕາການແລກປ່ຽນເງິນໂດລາ",style: TextStyle(color: Colors.blue,fontSize: 18.0),),
-                       
-                       DataTable(
-                         columns: <DataColumn>[
-                           DataColumn(label: Text("ສະກຸນເງິນ",style: TextStyle(fontSize: 14.0),)),
-                           DataColumn(label: Text("ອັດຕາການຊື້",style: TextStyle(fontSize: 14),)),
-                           DataColumn(label: Text("ອັດຕາການຂາຍ",style: TextStyle(fontSize: 14),)),
-                         ],
-                         rows: lists.map((sk)=> DataRow(
-                           cells: [
-                             DataCell(Text(sk.name)),
-                            DataCell(Text(sk.buy,style: TextStyle(color: Colors.red),)),
-                            DataCell(Text(sk.sale,style: TextStyle(color: Colors.green),)),
-                           ]
-                         ) ).toList(),
-                       ),
-                        ],),);
-                }else{
-                  return new Container(
-                      child: new Center(
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Center(
-                              child: new Text("ກຳລັງໂຫຼດ....."),
-                            ),                     
-                            // new Text("ກະລຸນາລໍຖ້າ!!"),
-                          ],
+                        SizedBox(
+                          height: 5.0,
                         ),
-                      ),
+                        Text(
+                          "ອັດຕາການແລກປ່ຽນເງິນໂດລາປະຈຳວັນ",
+                          style: TextStyle(color: Colors.blue, fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                       
+                        DataTable(
+                          columns: <DataColumn>[
+                            DataColumn(
+                                label: Text(
+                              "ສະກຸນເງິນ",
+                              style: TextStyle(fontSize: 14.0),
+                            )),
+                            DataColumn(
+                                label: Text(
+                              "ອັດຕາການຊື້",
+                              style: TextStyle(fontSize: 14),
+                            )),
+                            DataColumn(
+                                label: Text(
+                              "ອັດຕາການຂາຍ",
+                              style: TextStyle(fontSize: 14),
+                            )),
+                          ],
+                          rows: lists
+                              .map((sk) => DataRow(cells: [
+                                    DataCell(Text(sk.name)),
+                                    DataCell(Text(
+                                      sk.buy,
+                                      style: TextStyle(color: Colors.red),
+                                    )),
+                                    DataCell(Text(
+                                      sk.sale,
+                                      style: TextStyle(color: Colors.green),
+                                    )),
+                                  ]))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Container(
+                    child: Center(
+                      child: Text("ກຳລັງໂຫຼດ...."),
+                    ),
                   );
                 }
               },
@@ -100,742 +121,186 @@ class _TodayExchangeState extends State<TodayExchange> {
     );
   }
 }
-class ListOnTables{
+
+class ListOnTables {
   String name;
   String sale;
   String buy;
-  ListOnTables({this.name,this.buy,this.sale});
+  ListOnTables({this.name, this.buy, this.sale});
 }
- class exchangeRate {
-    static Future<showRateData> data() async{
-       var url = "https://openexchangerates.org/api/latest.json?app_id=472d0fbfe08f49c4b631b15463f7a46c";
-       var response = await http.get(url);
-       Map map = jsonDecode(response.body);
-       showRateData srd = showRateData.fromJson(map);
-       return srd;
-       //
-    }
-  }
-  class showRateData {
-  String disclaimer;
-  String license;
-  int timestamp;
-  String base;
-  Rates rates;
 
-  showRateData(
-      {this.disclaimer, this.license, this.timestamp, this.base, this.rates});
+class exchangeRate {
+  static Future<showRateData> data() async {
+    var url = "https://api.exchangeratesapi.io/latest?base=USD";
+    var response = await http.get(url);
+    Map map = jsonDecode(response.body);
+    showRateData srd = showRateData.fromJson(map);
+    return srd;
+    //
+  }
+}
+
+class showRateData {
+  Rates rates;
+  String base;
+  String date;
+
+  showRateData({this.rates, this.base, this.date});
 
   showRateData.fromJson(Map<String, dynamic> json) {
-    disclaimer = json['disclaimer'];
-    license = json['license'];
-    timestamp = json['timestamp'];
-    base = json['base'];
     rates = json['rates'] != null ? new Rates.fromJson(json['rates']) : null;
+    base = json['base'];
+    date = json['date'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['disclaimer'] = this.disclaimer;
-    data['license'] = this.license;
-    data['timestamp'] = this.timestamp;
-    data['base'] = this.base;
     if (this.rates != null) {
       data['rates'] = this.rates.toJson();
     }
+    data['base'] = this.base;
+    data['date'] = this.date;
     return data;
   }
 }
 
 class Rates {
-  double aED;
-  double aFN;
-  double aLL;
-  double aMD;
-  double aNG;
-  double aOA;
-  double aRS;
-  double aUD;
-  double aWG;
-  double aZN;
-  double bAM;
-  double bBD;
-  double bDT;
-  double bGN;
-  double bHD;
-  double bIF;
-  double bMD;
-  double bND;
-  double bOB;
-  double bRL;
-  double bSD;
-  double bTC;
-  double bTN;
-  double bWP;
-  double bYN;
-  double bZD;
   double cAD;
-  double cDF;
-  double cHF;
-  double cLF;
-  double cLP;
-  double cNH;
-  double cNY;
-  double cOP;
-  double cRC;
-  double cUC;
-  double cUP;
-  double cVE;
-  double cZK;
-  double dJF;
-  double dKK;
-  double dOP;
-  double dZD;
-  double eGP;
-  double eRN;
-  double eTB;
-  double eUR;
-  double fJD;
-  double fKP;
-  double gBP;
-  double gEL;
-  double gGP;
-  double gHS;
-  double gIP;
-  double gMD;
-  double gNF;
-  double gTQ;
-  double gYD;
   double hKD;
-  double hNL;
-  double hRK;
-  double hTG;
-  double hUF;
-  double iDR;
-  double iLS;
-  double iMP;
-  double iNR;
-  double iQD;
-  double iRR;
   double iSK;
-  double jEP;
-  double jMD;
-  double jOD;
-  double jPY;
-  double kES;
-  double kGS;
-  double kHR;
-  double kMF;
-  double kPW;
-  double kRW;
-  double kWD;
-  double kYD;
-  double kZT;
-  double lAK;
-  double lBP;
-  double lKR;
-  double lRD;
-  double lSL;
-  double lYD;
-  double mAD;
-  double mDL;
-  double mGA;
-  double mKD;
-  double mMK;
-  double mNT;
-  double mOP;
-  double mRO;
-  double mRU;
-  double mUR;
-  double mVR;
-  double mWK;
-  double mXN;
-  double mYR;
-  double mZN;
-  double nAD;
-  double nGN;
-  double nIO;
-  double nOK;
-  double nPR;
-  double nZD;
-  double oMR;
-  double pAB;
-  double pEN;
-  double pGK;
   double pHP;
-  double pKR;
-  double pLN;
-  double pYG;
-  double qAR;
+  double dKK;
+  double hUF;
+  double cZK;
+  double aUD;
   double rON;
-  double rSD;
-  double rUB;
-  double rWF;
-  double sAR;
-  double sBD;
-  double sCR;
-  double sDG;
   double sEK;
-  double sGD;
-  double sHP;
-  double sLL;
-  double sOS;
-  double sRD;
-  double sSP;
-  double sTD;
-  double sTN;
-  double sVC;
-  double sYP;
-  double sZL;
+  double iDR;
+  double iNR;
+  double bRL;
+  double rUB;
+  double hRK;
+  double jPY;
   double tHB;
-  double tJS;
-  double tMT;
-  double tND;
-  double tOP;
+  double cHF;
+  double sGD;
+  double pLN;
+  double bGN;
   double tRY;
-  double tTD;
-  double tWD;
-  double tZS;
-  double uAH;
-  double uGX;
-  double uSD;
-  double uYU;
-  double uZS;
-  double vEF;
-  double vES;
-  double vND;
-  double vUV;
-  double wST;
-  double xAF;
-  double xAG;
-  double xAU;
-  double xCD;
-  double xDR;
-  double xOF;
-  double xPD;
-  double xPF;
-  double xPT;
-  double yER;
+  double cNY;
+  double nOK;
+  double nZD;
   double zAR;
-  double zMW;
-  double zWL;
+  double uSD;
+  double mXN;
+  double iLS;
+  double gBP;
+  double kRW;
+  double mYR;
 
   Rates(
-      {this.aED,
-      this.aFN,
-      this.aLL,
-      this.aMD,
-      this.aNG,
-      this.aOA,
-      this.aRS,
-      this.aUD,
-      this.aWG,
-      this.aZN,
-      this.bAM,
-      this.bBD,
-      this.bDT,
-      this.bGN,
-      this.bHD,
-      this.bIF,
-      this.bMD,
-      this.bND,
-      this.bOB,
-      this.bRL,
-      this.bSD,
-      this.bTC,
-      this.bTN,
-      this.bWP,
-      this.bYN,
-      this.bZD,
-      this.cAD,
-      this.cDF,
-      this.cHF,
-      this.cLF,
-      this.cLP,
-      this.cNH,
-      this.cNY,
-      this.cOP,
-      this.cRC,
-      this.cUC,
-      this.cUP,
-      this.cVE,
-      this.cZK,
-      this.dJF,
-      this.dKK,
-      this.dOP,
-      this.dZD,
-      this.eGP,
-      this.eRN,
-      this.eTB,
-      this.eUR,
-      this.fJD,
-      this.fKP,
-      this.gBP,
-      this.gEL,
-      this.gGP,
-      this.gHS,
-      this.gIP,
-      this.gMD,
-      this.gNF,
-      this.gTQ,
-      this.gYD,
+      {this.cAD,
       this.hKD,
-      this.hNL,
-      this.hRK,
-      this.hTG,
-      this.hUF,
-      this.iDR,
-      this.iLS,
-      this.iMP,
-      this.iNR,
-      this.iQD,
-      this.iRR,
       this.iSK,
-      this.jEP,
-      this.jMD,
-      this.jOD,
-      this.jPY,
-      this.kES,
-      this.kGS,
-      this.kHR,
-      this.kMF,
-      this.kPW,
-      this.kRW,
-      this.kWD,
-      this.kYD,
-      this.kZT,
-      this.lAK,
-      this.lBP,
-      this.lKR,
-      this.lRD,
-      this.lSL,
-      this.lYD,
-      this.mAD,
-      this.mDL,
-      this.mGA,
-      this.mKD,
-      this.mMK,
-      this.mNT,
-      this.mOP,
-      this.mRO,
-      this.mRU,
-      this.mUR,
-      this.mVR,
-      this.mWK,
-      this.mXN,
-      this.mYR,
-      this.mZN,
-      this.nAD,
-      this.nGN,
-      this.nIO,
-      this.nOK,
-      this.nPR,
-      this.nZD,
-      this.oMR,
-      this.pAB,
-      this.pEN,
-      this.pGK,
       this.pHP,
-      this.pKR,
-      this.pLN,
-      this.pYG,
-      this.qAR,
+      this.dKK,
+      this.hUF,
+      this.cZK,
+      this.aUD,
       this.rON,
-      this.rSD,
-      this.rUB,
-      this.rWF,
-      this.sAR,
-      this.sBD,
-      this.sCR,
-      this.sDG,
       this.sEK,
-      this.sGD,
-      this.sHP,
-      this.sLL,
-      this.sOS,
-      this.sRD,
-      this.sSP,
-      this.sTD,
-      this.sTN,
-      this.sVC,
-      this.sYP,
-      this.sZL,
+      this.iDR,
+      this.iNR,
+      this.bRL,
+      this.rUB,
+      this.hRK,
+      this.jPY,
       this.tHB,
-      this.tJS,
-      this.tMT,
-      this.tND,
-      this.tOP,
+      this.cHF,
+      this.sGD,
+      this.pLN,
+      this.bGN,
       this.tRY,
-      this.tTD,
-      this.tWD,
-      this.tZS,
-      this.uAH,
-      this.uGX,
-      this.uSD,
-      this.uYU,
-      this.uZS,
-      this.vEF,
-      this.vES,
-      this.vND,
-      this.vUV,
-      this.wST,
-      this.xAF,
-      this.xAG,
-      this.xAU,
-      this.xCD,
-      this.xDR,
-      this.xOF,
-      this.xPD,
-      this.xPF,
-      this.xPT,
-      this.yER,
+      this.cNY,
+      this.nOK,
+      this.nZD,
       this.zAR,
-      this.zMW,
-      this.zWL});
+      this.uSD,
+      this.mXN,
+      this.iLS,
+      this.gBP,
+      this.kRW,
+      this.mYR});
 
   Rates.fromJson(Map<String, dynamic> json) {
-    aED = json['AED'];
-    aFN = json['AFN'];
-    aLL = json['ALL'];
-    aMD = json['AMD'];
-    aNG = json['ANG'];
-    aOA = json['AOA'];
-    aRS = json['ARS'];
-    aUD = json['AUD'];
-    bDT = json['BDT'];
-    bGN = json['BGN'];
-    bHD = json['BHD'];
-    bIF = json['BIF'];
-    bMD = json['BMD'];
-    bND = json['BND'];
-    bOB = json['BOB'];
-    bRL = json['BRL'];
-    bSD = json['BSD'];
-    bTC = json['BTC'];
-    bTN = json['BTN'];
-    bWP = json['BWP'];
-    bYN = json['BYN'];
-    bZD = json['BZD'];
     cAD = json['CAD'];
-    cDF = json['CDF'];
-    cHF = json['CHF'];
-    cLF = json['CLF'];
-    cLP = json['CLP'];
-    cNH = json['CNH'];
-    cNY = json['CNY'];
-    cOP = json['COP'];
-    cRC = json['CRC'];
-    cUC = json['CUC'];
-    cUP = json['CUP'];
-    cVE = json['CVE'];
-    cZK = json['CZK'];
-    dJF = json['DJF'];
-    dKK = json['DKK'];
-    dOP = json['DOP'];
-    dZD = json['DZD'];
-    eGP = json['EGP'];
-    eRN = json['ERN'];
-    eTB = json['ETB'];
-    eUR = json['EUR'];
-    fJD = json['FJD'];
-    fKP = json['FKP'];
-    gBP = json['GBP'];
-    gEL = json['GEL'];
-    gGP = json['GGP'];
-    gHS = json['GHS'];
-    gIP = json['GIP'];
-    gMD = json['GMD'];
-    gNF = json['GNF'];
-    gTQ = json['GTQ'];
-    gYD = json['GYD'];
     hKD = json['HKD'];
-    hNL = json['HNL'];
-    hRK = json['HRK'];
-    hTG = json['HTG'];
-    hUF = json['HUF'];
-    iDR = json['IDR'];
-    iLS = json['ILS'];
-    iMP = json['IMP'];
-    iNR = json['INR'];
-    iQD = json['IQD'];
-    iRR = json['IRR'];
     iSK = json['ISK'];
-    jEP = json['JEP'];
-    jMD = json['JMD'];
-    jOD = json['JOD'];
-    jPY = json['JPY'];
-    kES = json['KES'];
-    kGS = json['KGS'];
-    kHR = json['KHR'];
-    kMF = json['KMF'];
-    kPW = json['KPW'];
-    kRW = json['KRW'];
-    kWD = json['KWD'];
-    kYD = json['KYD'];
-    kZT = json['KZT'];
-    lAK = json['LAK'];
-    lBP = json['LBP'];
-    lKR = json['LKR'];
-    lRD = json['LRD'];
-    lSL = json['LSL'];
-    lYD = json['LYD'];
-    mAD = json['MAD'];
-    mDL = json['MDL'];
-    mGA = json['MGA'];
-    mKD = json['MKD'];
-    mMK = json['MMK'];
-    mNT = json['MNT'];
-    mOP = json['MOP'];
-    mRO = json['MRO'];
-    mRU = json['MRU'];
-    mUR = json['MUR'];
-    mVR = json['MVR'];
-    mWK = json['MWK'];
-    mXN = json['MXN'];
-    mYR = json['MYR'];
-    mZN = json['MZN'];
-    nAD = json['NAD'];
-    nGN = json['NGN'];
-    nIO = json['NIO'];
-    nOK = json['NOK'];
-    nPR = json['NPR'];
-    nZD = json['NZD'];
-    oMR = json['OMR'];
-    pAB = json['PAB'];
-    pEN = json['PEN'];
-    pGK = json['PGK'];
     pHP = json['PHP'];
-    pKR = json['PKR'];
-    pLN = json['PLN'];
-    pYG = json['PYG'];
-    qAR = json['QAR'];
+    dKK = json['DKK'];
+    hUF = json['HUF'];
+    cZK = json['CZK'];
+    aUD = json['AUD'];
     rON = json['RON'];
-    rSD = json['RSD'];
-    rUB = json['RUB'];
-    rWF = json['RWF'];
-    sAR = json['SAR'];
-    sBD = json['SBD'];
-    sCR = json['SCR'];
-    sDG = json['SDG'];
     sEK = json['SEK'];
-    sGD = json['SGD'];
-    sHP = json['SHP'];
-    sLL = json['SLL'];
-    sOS = json['SOS'];
-    sRD = json['SRD'];
-    sSP = json['SSP'];
-    sTD = json['STD'];
-    sTN = json['STN'];
-    sVC = json['SVC'];
-    sYP = json['SYP'];
-    sZL = json['SZL'];
+    iDR = json['IDR'];
+    iNR = json['INR'];
+    bRL = json['BRL'];
+    rUB = json['RUB'];
+    hRK = json['HRK'];
+    jPY = json['JPY'];
     tHB = json['THB'];
-    tJS = json['TJS'];
-    tMT = json['TMT'];
-    tND = json['TND'];
-    tOP = json['TOP'];
+    cHF = json['CHF'];
+    sGD = json['SGD'];
+    pLN = json['PLN'];
+    bGN = json['BGN'];
     tRY = json['TRY'];
-    tTD = json['TTD'];
-    tWD = json['TWD'];
-    tZS = json['TZS'];
-    uAH = json['UAH'];
-    uGX = json['UGX'];
-    uSD = json['USD'];
-    uYU = json['UYU'];
-    uZS = json['UZS'];
-    vEF = json['VEF'];
-    vES = json['VES'];
-    vND = json['VND'];
-    vUV = json['VUV'];
-    wST = json['WST'];
-    xAF = json['XAF'];
-    xAG = json['XAG'];
-    xAU = json['XAU'];
-    xCD = json['XCD'];
-    xDR = json['XDR'];
-    xOF = json['XOF'];
-    xPD = json['XPD'];
-    xPF = json['XPF'];
-    xPT = json['XPT'];
-    yER = json['YER'];
+    cNY = json['CNY'];
+    nOK = json['NOK'];
+    nZD = json['NZD'];
     zAR = json['ZAR'];
-    zMW = json['ZMW'];
-    zWL = json['ZWL'];
+    uSD = json['USD'];
+    mXN = json['MXN'];
+    iLS = json['ILS'];
+    gBP = json['GBP'];
+    kRW = json['KRW'];
+    mYR = json['MYR'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['AED'] = this.aED;
-    data['AFN'] = this.aFN;
-    data['ALL'] = this.aLL;
-    data['AMD'] = this.aMD;
-    data['ANG'] = this.aNG;
-    data['AOA'] = this.aOA;
-    data['ARS'] = this.aRS;
-    data['AUD'] = this.aUD;
-    data['AWG'] = this.aWG;
-    data['AZN'] = this.aZN;
-    data['BAM'] = this.bAM;
-    data['BBD'] = this.bBD;
-    data['BDT'] = this.bDT;
-    data['BGN'] = this.bGN;
-    data['BHD'] = this.bHD;
-    data['BIF'] = this.bIF;
-    data['BMD'] = this.bMD;
-    data['BND'] = this.bND;
-    data['BOB'] = this.bOB;
-    data['BRL'] = this.bRL;
-    data['BSD'] = this.bSD;
-    data['BTC'] = this.bTC;
-    data['BTN'] = this.bTN;
-    data['BWP'] = this.bWP;
-    data['BYN'] = this.bYN;
-    data['BZD'] = this.bZD;
     data['CAD'] = this.cAD;
-    data['CDF'] = this.cDF;
-    data['CHF'] = this.cHF;
-    data['CLF'] = this.cLF;
-    data['CLP'] = this.cLP;
-    data['CNH'] = this.cNH;
-    data['CNY'] = this.cNY;
-    data['COP'] = this.cOP;
-    data['CRC'] = this.cRC;
-    data['CUC'] = this.cUC;
-    data['CUP'] = this.cUP;
-    data['CVE'] = this.cVE;
-    data['CZK'] = this.cZK;
-    data['DJF'] = this.dJF;
-    data['DKK'] = this.dKK;
-    data['DOP'] = this.dOP;
-    data['DZD'] = this.dZD;
-    data['EGP'] = this.eGP;
-    data['ERN'] = this.eRN;
-    data['ETB'] = this.eTB;
-    data['EUR'] = this.eUR;
-    data['FJD'] = this.fJD;
-    data['FKP'] = this.fKP;
-    data['GBP'] = this.gBP;
-    data['GEL'] = this.gEL;
-    data['GGP'] = this.gGP;
-    data['GHS'] = this.gHS;
-    data['GIP'] = this.gIP;
-    data['GMD'] = this.gMD;
-    data['GNF'] = this.gNF;
-    data['GTQ'] = this.gTQ;
-    data['GYD'] = this.gYD;
     data['HKD'] = this.hKD;
-    data['HNL'] = this.hNL;
-    data['HRK'] = this.hRK;
-    data['HTG'] = this.hTG;
-    data['HUF'] = this.hUF;
-    data['IDR'] = this.iDR;
-    data['ILS'] = this.iLS;
-    data['IMP'] = this.iMP;
-    data['INR'] = this.iNR;
-    data['IQD'] = this.iQD;
-    data['IRR'] = this.iRR;
     data['ISK'] = this.iSK;
-    data['JEP'] = this.jEP;
-    data['JMD'] = this.jMD;
-    data['JOD'] = this.jOD;
-    data['JPY'] = this.jPY;
-    data['KES'] = this.kES;
-    data['KGS'] = this.kGS;
-    data['KHR'] = this.kHR;
-    data['KMF'] = this.kMF;
-    data['KPW'] = this.kPW;
-    data['KRW'] = this.kRW;
-    data['KWD'] = this.kWD;
-    data['KYD'] = this.kYD;
-    data['KZT'] = this.kZT;
-    data['LAK'] = this.lAK;
-    data['LBP'] = this.lBP;
-    data['LKR'] = this.lKR;
-    data['LRD'] = this.lRD;
-    data['LSL'] = this.lSL;
-    data['LYD'] = this.lYD;
-    data['MAD'] = this.mAD;
-    data['MDL'] = this.mDL;
-    data['MGA'] = this.mGA;
-    data['MKD'] = this.mKD;
-    data['MMK'] = this.mMK;
-    data['MNT'] = this.mNT;
-    data['MOP'] = this.mOP;
-    data['MRO'] = this.mRO;
-    data['MRU'] = this.mRU;
-    data['MUR'] = this.mUR;
-    data['MVR'] = this.mVR;
-    data['MWK'] = this.mWK;
-    data['MXN'] = this.mXN;
-    data['MYR'] = this.mYR;
-    data['MZN'] = this.mZN;
-    data['NAD'] = this.nAD;
-    data['NGN'] = this.nGN;
-    data['NIO'] = this.nIO;
-    data['NOK'] = this.nOK;
-    data['NPR'] = this.nPR;
-    data['NZD'] = this.nZD;
-    data['OMR'] = this.oMR;
-    data['PAB'] = this.pAB;
-    data['PEN'] = this.pEN;
-    data['PGK'] = this.pGK;
     data['PHP'] = this.pHP;
-    data['PKR'] = this.pKR;
-    data['PLN'] = this.pLN;
-    data['PYG'] = this.pYG;
-    data['QAR'] = this.qAR;
+    data['DKK'] = this.dKK;
+    data['HUF'] = this.hUF;
+    data['CZK'] = this.cZK;
+    data['AUD'] = this.aUD;
     data['RON'] = this.rON;
-    data['RSD'] = this.rSD;
-    data['RUB'] = this.rUB;
-    data['RWF'] = this.rWF;
-    data['SAR'] = this.sAR;
-    data['SBD'] = this.sBD;
-    data['SCR'] = this.sCR;
-    data['SDG'] = this.sDG;
     data['SEK'] = this.sEK;
-    data['SGD'] = this.sGD;
-    data['SHP'] = this.sHP;
-    data['SLL'] = this.sLL;
-    data['SOS'] = this.sOS;
-    data['SRD'] = this.sRD;
-    data['SSP'] = this.sSP;
-    data['STD'] = this.sTD;
-    data['STN'] = this.sTN;
-    data['SVC'] = this.sVC;
-    data['SYP'] = this.sYP;
-    data['SZL'] = this.sZL;
+    data['IDR'] = this.iDR;
+    data['INR'] = this.iNR;
+    data['BRL'] = this.bRL;
+    data['RUB'] = this.rUB;
+    data['HRK'] = this.hRK;
+    data['JPY'] = this.jPY;
     data['THB'] = this.tHB;
-    data['TJS'] = this.tJS;
-    data['TMT'] = this.tMT;
-    data['TND'] = this.tND;
-    data['TOP'] = this.tOP;
+    data['CHF'] = this.cHF;
+    data['SGD'] = this.sGD;
+    data['PLN'] = this.pLN;
+    data['BGN'] = this.bGN;
     data['TRY'] = this.tRY;
-    data['TTD'] = this.tTD;
-    data['TWD'] = this.tWD;
-    data['TZS'] = this.tZS;
-    data['UAH'] = this.uAH;
-    data['UGX'] = this.uGX;
-    data['USD'] = this.uSD;
-    data['UYU'] = this.uYU;
-    data['UZS'] = this.uZS;
-    data['VEF'] = this.vEF;
-    data['VES'] = this.vES;
-    data['VND'] = this.vND;
-    data['VUV'] = this.vUV;
-    data['WST'] = this.wST;
-    data['XAF'] = this.xAF;
-    data['XAG'] = this.xAG;
-    data['XAU'] = this.xAU;
-    data['XCD'] = this.xCD;
-    data['XDR'] = this.xDR;
-    data['XOF'] = this.xOF;
-    data['XPD'] = this.xPD;
-    data['XPF'] = this.xPF;
-    data['XPT'] = this.xPT;
-    data['YER'] = this.yER;
+    data['CNY'] = this.cNY;
+    data['NOK'] = this.nOK;
+    data['NZD'] = this.nZD;
     data['ZAR'] = this.zAR;
-    data['ZMW'] = this.zMW;
-    data['ZWL'] = this.zWL;
+    data['USD'] = this.uSD;
+    data['MXN'] = this.mXN;
+    data['ILS'] = this.iLS;
+    data['GBP'] = this.gBP;
+    data['KRW'] = this.kRW;
+    data['MYR'] = this.mYR;
     return data;
   }
 }
