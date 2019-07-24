@@ -1,5 +1,4 @@
 import 'package:exchange/home.dart';
-import 'package:exchange/login.dart';
 import 'package:exchange/pages/mapshop.dart';
 import 'package:exchange/pages/user.dart';
 import 'package:exchange/services/showexchange.dart';
@@ -24,7 +23,6 @@ class MyApp extends StatelessWidget {
         '/': (BuildContext context) => new MyLoginPage(),
         '/signup': (BuildContext context) => new Signin(),
         '/Homepage': (BuildContext context) => new Home(),
-        '/login': (BuildContext context) => new LoginPage(),
         '/loginGoogle': (BuildContext context) => new MyLoginPage(),
         '/createUser': (BuildContext context) => new CreateNewUser(),
         '/showUser': (BuildContext context) => new ShowUser(),

@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'exchange.dart';
-import 'login.dart';
 import './services/calExchange.dart' as calExchange;
 import './services/history.dart' as history;
 import './services/TodayEX.dart' as todayExchange;
@@ -162,8 +161,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   trailing: new Icon(Icons.home),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext centext) => new LoginPage()));
                   }),
               new ListTile(
                   title: new Text("ອັດຕາການແລກປ່ຽນ"),
@@ -191,14 +188,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Navigator.of(context).push(new MaterialPageRoute(
                         builder: (BuildContext centext) =>
                             new ShopMap()));
-                  }),
-              new ListTile(
-                  title: new Text("ລົງທະບຽນ"),
-                  trailing: new Icon(Icons.offline_pin),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext centext) => new Signin()));
                   }),
               new ListTile(
                   title: new Text("ເພີ່ມຜູ່ໃຊ້"),
