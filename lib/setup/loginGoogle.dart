@@ -156,7 +156,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                             or(),
                             // buildButtonGoogle(context),
                             // buildButtonFacebook(context),
-                            
+
                             resetPassword(context),
                           ],
                         ),
@@ -172,8 +172,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
   Container logo() {
     return Container(
       padding:
-          EdgeInsets.only(bottom: 15.0, top: 10.0, left: 70.0, right: 70.0),
-      child: Image.asset('assets/ltc.png'),
+          EdgeInsets.only(bottom: 25.0, top: 10.0, left: 60.0, right: 60.0),
+      child: Image.asset('assets/dd.png'),
     );
   }
 
@@ -270,8 +270,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: Colors.white)),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.red),
+            borderRadius: BorderRadius.circular(16), color: Colors.red),
         margin: EdgeInsets.only(top: 1),
         padding: EdgeInsets.all(12),
       ),

@@ -130,7 +130,7 @@ class _SigninState extends State<Signin> {
     return Container(
       padding:
           EdgeInsets.only(top: 10.0, bottom: 10.0, right: 98.0, left: 98.0),
-      child: Image.asset('assets/ltc.png'),
+      child: Image.asset('assets/dd.png'),
     );
   }
 
